@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--	<settings>
+		&lt;!&ndash; 在null时设置为NULL &ndash;&gt;
+		<setting name="jdbcTypeForNull" value="NULL" />
+		&lt;!&ndash; 在null时也调用 setter,适应于返回Map,3.2版本以上可用 &ndash;&gt;
+		<setting name="callSettersOnNulls" value="true" />
+		&lt;!&ndash; 日志记录对象，配合logback使用，用于调试显示sql执行过程日志 &ndash;&gt;
+		<setting name="logPrefix" value="show_sql."/>
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>-->
+
+<!--	<typeAliases>-->
+<!--		<typeAlias alias="RiskRemitInfo" type="com.minpay.core.risk.pre.entity.RiskRemitInfo" />-->
+<!--	</typeAliases>-->
+</configuration>

@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  tomcat:
+    max-connections: 10000
+
+spring:
+  datasource:
+    druid:
+      WebStatFilter:
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      filter:
+        stat:
+          db-type: mysql
+          enabled: true
+          log-slow-sql: true
+          merge-sql: true
+          slow-sql-millis: 2000
+      filters: stat
+      initial-size: 5
+      max-active: 20
+      max-pool-prepared-statement-per-connection-size: 50
+      max-wait: 10000
+      min-evictable-idle-time-millis: 600000
+      min-idle: 5
+      pool-prepared-statements: true
+      stat-view-servlet:
+        enabled: true
+        login-password: druid123
+        login-username: druid
+        url-pattern: /druid/*
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 3000
+      url: jdbc:mysql://10.3.16.202:3306/pay?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+      use-global-data-source-stat: true
+      username: platfrom
+      password: Platfrom#0410
+      validation-query: select 1
+
+mybatis:
+  config-location: mybatis-config.xml
+  mapper-locations: classpath*:mappers/*.xml
+
+
+alipay:
+  appId: 2021000119648616
+  serviceUrl: https://openapi.alipaydev.com/gateway.do
+  rootKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAohgo9onyRlIGcD18GtfQliF4eLtbK469mX0dDYnQYam3VgpxgE8VVURAG88ueaG3xobCXB+jobpqGuxft+MOm1v9sPijRTwcM/Muk+5vzY7C9uLN/z1l2j7jyQmhe0I0Ing4yRyGyewIjm2+tz+6xMMG3ZFMsAyvwja9yjbwqAxI2f/ifLmIu77gJPbGTkHQ6xJjBd9RGEQo4gMFz8bK6HtHMMqVm1ST1ryDSkHbqAFSrx+tTs6Ph+sy5vsBy4Dj0QwVd1OLeC/EOkuc2XbxZjtewR5bI6qbJ5i0sG5hcRi3nrEO8QEbTNMgfIvSEqQmvDfIcX5a38dW7+7vJKjOKwIDAQAB
+  appPrivateKey: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCOMmhVdbnQGMgi+ZDxDokmtushKdewNocqsz1WTzBtytgzke+XIa0dYXUawuabQOQPkkSW4qFS35tAWHy0HwZfVyedOCHjJbUZD2hIEnNxVqK/6LYKjmZFws6Z5lL4WbsLe9uzKC7fOwkk9c12n4+4eDq69teqjwlnS7zTVwW9cmcO6nDFr3EuWKQSbuowZ6OGnAa5MXw6dYiZlaWE2npaQvGJheLd0BxqwIhyEbg6veLC1TT+/L/FN+f0hpp7mONiR770w/Pmcw6vGGLr1tkY4Oj911aQbWXArZSSn56n8XjTtU1zHU5n+4JgZVoioXXTCjWB3Xni9FJYSvf2aBKBAgMBAAECggEBAI2bU12v5ICA/WYfJKF6uUjNprCbC8nXM5ppby7xo6fi9pW8wl2+UrjMoiMpbx+zaqq7HgUo4kE2n1RgCqgRsXXmxHOEP/MGTSgMuOv1O/PltCPrasZucxkL3FVVEtFyApx4Fx1+adcy4nNlOdzlH+o0CUDBq5qV4WZ1/TB2HChBNc9pVyUI6RuRTGsINmAkviPljK7xbd2N1MaN5QR2vBxydlb7GicZOfAgRZ5nmWv0HCHWN+tD41wX5Pn3oTbHD5ShW2QRx9TLnEPCcz0M4wZmjQsCtF2NBAUv7bMicFJos3zqWQF5XxqD0dXMujZOY4fBxR0+IlX3Xrfct5iTAzECgYEAzDSBg3Z+gK8Ng+IHtyYAkVWY/yCHb/ym7AJ5zaK6kgCzZoLwbML8dy+MlvzCYk1KsWNSx5I8pFYS/PHV6TqUEhs4VBh0lw0cf/pFSjpbHb5wDCVCl9qYSqHuCZSIuQZU/uxH/QQYcUdMAvMN1ywK3Va8fFx/6F2iMG+/thyIOC0CgYEAskOSGVZsinLJevYp6sKH3qDJqkpmFXycZhsL1185lfUor1qY9Kubh8qvn6QFkQJw4dde9h/6Bx+phlE8O8pD1J/pib2Spy5zNvuXS2OmNj8/gCXj1g9Lbc4TMah1G+g4MtqY5aYn2pcc8O7hE5OkQBqY/fQxRAs0J304NXp8RCUCgYEAwarOZircYRkkfT7CSH3fLfb7ioOET75TZSQX9uHthgjqHD/024G1xSewc4Y2qNpbC4+Cc8oKf2Uuzvxg/rhStDVin8ct1BBYRjvKuVJNFhGF3M79sF1d7/JRen6HiMsrkzXuNFVNBSo0Odvf9YFMsIzRaDSmDm+3Ia7qKEI5IuUCgYEAq05Z4LV3mthSHDLg9zO3o8553YafcTiNh2WoTHC7AwtT7KcwY7dhv+2cNdpGayKgXbc9D2KNQDlCDMyWCJMH+hUuNOqTOstddtHxg0YgnPLM0BYZS0TpZHzrXwYWfBn9n4kH83Bnzhz3d+TnMIvqBJxKt4jpqwzlMqmX0XSCZG0CgYBL3EdYGuzi2BwXHgCzeQNnL559oDFFQ7G0pxCGIKXtKVsIYSVfcFFrmwxBEWAd6KcPmMxdkAuw2Ey3/fstN7sKp1j1vlvoSeBE4RRmL6oAn1cNdYKd3SwOT5ovelHhCU+LzipzPmbjxjKiCOPfQs4u9hlMQQz+cK3Cro5xHYpwuw==
+  appPayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjjJoVXW50BjIIvmQ8Q6JJrbrISnXsDaHKrM9Vk8wbcrYM5HvlyGtHWF1GsLmm0DkD5JEluKhUt+bQFh8tB8GX1cnnTgh4yW1GQ9oSBJzcVaiv+i2Co5mRcLOmeZS+Fm7C3vbsygu3zsJJPXNdp+PuHg6uvbXqo8JZ0u801cFvXJnDupwxa9xLlikEm7qMGejhpwGuTF8OnWImZWlhNp6WkLxiYXi3dAcasCIchG4Or3iwtU0/vy/xTfn9Iaae5jjYke+9MPz5nMOrxhi69bZGODo/ddWkG1lwK2Ukp+ep/F407VNcx1OZ/uCYGVaIqF10wo1gd154vRSWEr39mgSgQIDAQAB

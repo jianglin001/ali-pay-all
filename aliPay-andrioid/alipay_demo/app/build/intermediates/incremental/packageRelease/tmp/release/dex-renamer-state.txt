@@ -1,0 +1,4 @@
+#Sat Mar 26 20:28:53 CST 2022
+base.0=D\:\\ideaworkSpart\\ali-pay-all\\aliPay-andrioid\\alipay_demo\\app\\build\\intermediates\\dex\\release\\shrunkDex\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

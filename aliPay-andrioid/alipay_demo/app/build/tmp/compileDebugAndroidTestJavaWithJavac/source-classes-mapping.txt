@@ -1,0 +1,2 @@
+com/alipay/sdk/pay/demo/test/BuildConfig.java
+ com.alipay.sdk.pay.demo.test.BuildConfig

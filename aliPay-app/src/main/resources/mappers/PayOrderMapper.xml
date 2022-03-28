@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- pay_order -->
+<mapper namespace="com.example.jianglin.dao.PayOrderMapper">
+    <!-- 结果映射 -->
+    <resultMap id="payOrderMap" type="com.example.jianglin.entity.PayOrder">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+        <result column="channel_trade_no" property="channelTradeNo" jdbcType="VARCHAR" />
+        <result column="merchant_request_id" property="merchantRequestId" jdbcType="VARCHAR" />
+        <result column="order_status" property="orderStatus" jdbcType="VARCHAR" />
+        <result column="order_amount" property="orderAmount" jdbcType="VARCHAR" />
+        <result column="pay_amount" property="payAmount" jdbcType="VARCHAR" />
+        <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+        <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+        <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+        <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+        <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+        <result column="bank_branch_name" property="bankBranchName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="return_url" property="returnUrl" jdbcType="VARCHAR" />
+        <result column="nofity_url" property="nofityUrl" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 表所有字段 -->
+    <sql id="allColumns">
+        id, order_no, channel_trade_no, merchant_request_id, order_status, order_amount,
+        pay_amount, pay_type, pay_time, bank_name, bank_account, bank_branch_name,
+        create_time, update_time, return_url, nofity_url, goods_name, goods_type
+    </sql>
+
+    <select id="findByMerchantRequestId" resultMap="payOrderMap">
+        select <include refid="allColumns"/>
+        FROM tbl_pay_order
+        where merchant_request_id = #{merchantRequestId}
+    </select>
+
+    <select id="findByOrderNo" resultMap="payOrderMap">
+        SELECT <include refid="allColumns"/>
+        FROM tbl_pay_order
+        WHERE order_no = #{orderNo}
+    </select>
+    
+    <select id="findByDoing" resultMap="payOrderMap">
+        SELECT order_no FROM tbl_pay_order WHERE order_status = 'DOING'
+    </select>
+
+    <!-- 插入数据 -->
+    <insert id="insertPayOrder" parameterType="map">
+        INSERT INTO tbl_pay_order (order_no, merchant_request_id, order_status, order_amount, pay_amount, pay_type, pay_time,
+            create_time, update_time, return_url, nofity_url, goods_name, goods_type)
+        VALUES (
+            #{orderNo},
+            #{merchantRequestId},
+            #{orderStatus},
+            #{orderAmount},
+            #{payAmount},
+            #{payType},
+            #{payTime},
+            #{createTime},
+            #{updateTime},
+            #{returnUrl},
+            #{nofityUrl},
+            #{goodsName},
+            #{goodsType}
+        )
+    </insert>
+
+    <!-- 修改数据 -->
+    <update id="updatePayOrder" parameterType="map">
+        UPDATE tbl_pay_order SET
+        <if test="channelTradeNo != null and channelTradeNo != ''">
+            channel_trade_no = #{channelTradeNo},
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            order_status = #{orderStatus},
+        </if>
+        <if test="payAmount != null and payAmount != ''">
+            pay_amount = #{payAmount},
+        </if>
+        <if test="bankName != null and bankName != ''">
+            bank_name = #{bankName},
+        </if>
+        <if test="bankAccount != null and bankAccount != ''">
+            bank_account = #{bankAccount},
+        </if>
+        <if test="bankBranchName != null and bankBranchName != ''">
+            bank_branch_name = #{bankBranchName},
+        </if>
+        update_time = #{updateTime}
+        WHERE order_no = #{orderNo}
+    </update>
+
+</mapper>
